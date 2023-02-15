@@ -1,0 +1,7 @@
+{
+  "name": "ngx-Demo",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

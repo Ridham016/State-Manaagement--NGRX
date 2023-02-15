@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card>
+    <ion-item >
+      <ion-label>id</ion-label>
+      <ion-input type="text" [(ngModel)]="id" name="id" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>name</ion-label>
+      <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
+    </ion-item>
+<ion-button (click)="onSubmit(1)">lol add</ion-button>
+<ion-button (click)="onSubmit(2)">lol delete</ion-button>
+<ion-button (click)="onSubmit(3)">lol update</ion-button>
+  </ion-card>
+
+
+
+  <ion-grid >
+    <ion-row class="ion-text-start">
+      <ion-col size="6" ><div class=" ion-text-center gg ">ID</div></ion-col>
+      <ion-col size="6" ><div class=" ion-text-center gg">NAme</div></ion-col>
+    </ion-row>
+    <ion-row class="ion-text-start" *ngFor="let r of dataArray">
+      <ion-col size="6">{{r.id}}</ion-col>
+      <ion-col size="6">{{r.name}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
