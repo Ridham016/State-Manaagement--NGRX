@@ -1,41 +1,31 @@
-<ion-header [translucent]="true">
+<ion-header translucent="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title size="large">State Management Demo</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-card>
-    <ion-item >
-      <ion-label>id</ion-label>
-      <ion-input type="text" [(ngModel)]="id" name="id" ></ion-input>
+
+  <ion-card class="ion-text-center">
+    <form #form="ngForm" novalidate>
+    <ion-item fill="outline" class="gg" >
+      <ion-label position="floating" >id</ion-label>
+      <ion-input type="number" [(ngModel)]="id" name="id" required ></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label>name</ion-label>
+    <ion-item fill="outline" class="gg">
+      <ion-label position="floating">name</ion-label>
       <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
     </ion-item>
-<ion-button (click)="onSubmit(1)">lol add</ion-button>
-<ion-button (click)="onSubmit(2)">lol delete</ion-button>
-<ion-button (click)="onSubmit(3)">lol update</ion-button>
-  </ion-card>
 
+<ion-button shape="round" [disabled]="!form.valid" (click)="onSubmit(1)" (click)="presentToast('Added to list')">add data</ion-button>
+<ion-button shape="round" [disabled]="!form.valid" (click)="onSubmit(2)" (click)="presentToast('Deleted from  list')">delete data</ion-button>
+<ion-button shape="round" [disabled]="!form.valid" (click)="onSubmit(3)" (click)="presentToast('Updated to list')">update</ion-button>
+</form>
+</ion-card>
 
-
-  <ion-grid >
-    <ion-row class="ion-text-start">
-      <ion-col size="6" ><div class=" ion-text-center gg ">ID</div></ion-col>
-      <ion-col size="6" ><div class=" ion-text-center gg">NAme</div></ion-col>
-    </ion-row>
-    <ion-row class="ion-text-start" *ngFor="let r of dataArray">
-      <ion-col size="6">{{r.id}}</ion-col>
-      <ion-col size="6">{{r.name}}</ion-col>
-    </ion-row>
-  </ion-grid>
 </ion-content>
+<ion-footer>
+  <ion-button routerLink="/list-data" expand="block" fill="clear" shape="round">
+    view List
+  </ion-button>
+</ion-footer>

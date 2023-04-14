@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'list-data',
+    loadChildren: () => import('./list-data/list-data.module').then( m => m.ListDataPageModule)
+  },
 ];
 
 @NgModule({

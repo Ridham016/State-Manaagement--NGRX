@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store} from '@ngrx/store';
 import { AppState ,Item } from '../store/app.state';
 import { addItem, removeItem, updateItem } from '../store/item.actions';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -13,24 +14,24 @@ export class HomePage implements OnInit {
 
    id!:string;
    name!:string;
-list:any=[]
-dataArray:any=[]
-  constructor(private store: Store<AppState>) {
+  constructor(
+    private store: Store<AppState>,
+    private toastController: ToastController
+    ) {
 
   }
 ngOnInit() {
-  this.store.select(state => state.items).subscribe(items => {
-    console.log(items);
-    this.list=items['entities'];
-    this.dataArray=Object.keys(this.list).map(key=>{
-      return{
-        name:this.list[key]['name'],
-        id:this.list[key]['id']
-      }
-    });
-    console.log(this.dataArray)
+
+
+}
+async presentToast(message:string) {
+  const toast = await this.toastController.create({
+    message: message,
+    duration: 1500,
+    position: 'bottom'
   });
 
+  await toast.present();
 }
   onSubmit(i:number){
     const item = {
@@ -40,14 +41,20 @@ ngOnInit() {
     if(i==1){
 
       this.store.dispatch(addItem({item}));
+      this.id=''
+      this.name=''
     }
 
     else if(i==2){
       this.store.dispatch(removeItem({id:item.id}));
+      this.id=''
+      this.name=''
     }
 
     else if(i==3){
       this.store.dispatch(updateItem({item}));
+      this.id=''
+      this.name=''
     }
 
 
